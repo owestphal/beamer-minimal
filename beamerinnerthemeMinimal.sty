@@ -1,0 +1,75 @@
+\ProvidesPackage{beamerinnerthemeMinimal}
+
+\setbeamertemplate{frametitle}{
+  \vspace{5pt}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex]{frametitle}
+  % \centerline{%
+    \hspace{1em}
+    \insertframetitle
+  % }%
+  \end{beamercolorbox}
+  % \vspace{-0.5cm}
+}
+
+\renewcommand{\itemize}[1][]{%
+  \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
+  \ifnum \@itemdepth >2\relax\@toodeep\else
+\advance\@itemdepth\@ne
+\beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+\usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+\usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+\usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+\list
+  {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+  {\def\makelabel##1{%
+  {%
+\hss\llap{{%
+\usebeamerfont*{itemize \beameritemnestingprefix item}%
+\usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
+  }%
+}%
+% start change
+\setlength\itemsep{0.5\baselineskip}
+% end change
+  }
+  \fi%
+  \beamer@cramped%
+  \raggedright%
+  \beamer@firstlineitemizeunskip%
+}
+
+% copied from default theme
+\setbeamertemplate{title page}
+{
+  \vbox{}
+  \vfill
+  \begingroup
+    % \centering
+    \begin{beamercolorbox}[wd=\paperwidth,sep=8pt,left]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \hspace{-2em}
+    \begin{beamercolorbox}[ht=2.25ex,dp=1.5ex,left]{author}
+      \hspace{.5em}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \par
+    \hspace{-2em}
+    \begin{beamercolorbox}[sep=8pt,left]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \par
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex]{title}
+  \end{beamercolorbox}
+  \endgroup
+  \vfill
+}
+
+\endinput

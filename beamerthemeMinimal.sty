@@ -1,0 +1,41 @@
+\ProvidesPackage{beamerthemeMinimal}
+
+\usecolortheme{Minimal}
+\useinnertheme{Minimal}
+\usefonttheme{Minimal}
+\useoutertheme{Minimal}
+
+\newif\if@notes\@notesfalse
+
+% notes option
+\DeclareOption{notes}{
+  \@notestrue
+}
+
+\ProcessOptions\relax
+
+\if@notes
+  \RequirePackage[opacity=0,open=true]{pdfcomment}
+  \newcommand{\pdfnote}[1]{\marginnote{\pdfcomment{#1}}}
+\else
+  \newcommand{\marginnote}[1]{}
+  \newcommand{\pdfcomment}[1]{}
+  \newcommand{\pdfnote}[1]{}
+\fi
+
+
+\RequirePackage{minted}
+\usemintedstyle{minimal}
+\setminted{bgcolor=darkgray, autogobble, fontsize=\small}
+\setmintedinline{bgcolor={}, fontsize=\normalsize}
+
+\renewcommand{\maketitle}{
+\begin{frame}[noframenumbering,plain]
+  \titlepage
+  \pdfnote{Use this to adjust the annotation fontsize!}
+\end{frame}
+}
+
+\renewcommand{\emph}[1]{\underline{#1}}
+
+\endinput

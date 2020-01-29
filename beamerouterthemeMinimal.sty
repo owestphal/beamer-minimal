@@ -1,0 +1,44 @@
+\ProvidesPackage{beamerouterthemeMinimal}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.9\paperwidth]{normal text}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=0.1\paperwidth,center,ht=2.25ex,dp=1ex]{footline}
+     \insertframenumber
+     % \hspace{8pt}
+  \end{beamercolorbox}
+  }%
+  \vspace{8pt}
+}
+
+\setbeamertemplate{section page}{
+    \usebeamerfont{section title}
+    \usebeamercolor{section title}
+    \begin{beamercolorbox}[wd=\paperwidth,sep=1ex]{section title}
+      \insertsection
+    \end{beamercolorbox}
+}
+\AtBeginSection{
+% define backup counter if it does not exist already
+\makeatletter
+\@ifundefined{c@@backup}%
+  {\newcounter{@backup}}%then
+  {}%else
+% backup current framenumber
+\setcounter{@backup}{\value{framenumber}}
+\makeatother
+
+\setcounter{framenumber}{-1}
+\frame[c,plain]{\sectionpage}
+
+\makeatletter
+\setcounter{framenumber}{\value{@backup}}
+\makeatletter
+
+}
+
+\setbeamertemplate{headline}{}
+
+\endinput
