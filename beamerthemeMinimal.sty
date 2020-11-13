@@ -5,13 +5,18 @@
 \usefonttheme{Minimal}
 \useoutertheme{Minimal}
 
-\setbeamertemplate{blocks}[default,shadow]
+\setbeamertemplate{blocks}[default]
 
 \newif\if@notes\@notesfalse
+\newif\ifminted@\minted@true
 
 % notes option
 \DeclareOption{notes}{
   \@notestrue
+}
+% do not load minted package (avoids the need for shell-escape)
+\DeclareOption{nocode}{
+  \minted@false
 }
 
 \ProcessOptions\relax
@@ -25,11 +30,12 @@
   \newcommand{\pdfnote}[1]{}
 \fi
 
-
+\ifminted@
 \RequirePackage{minted}
 \usemintedstyle{minimal}
 \setminted{bgcolor=darkgray, autogobble, fontsize=\small}
 \setmintedinline{bgcolor={}, fontsize=\normalsize}
+\fi
 
 \renewcommand{\maketitle}{
 \begin{frame}[noframenumbering,plain]
