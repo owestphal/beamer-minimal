@@ -32,8 +32,9 @@
 
 \ifminted@
 \RequirePackage{minted}
-\usemintedstyle{minimal}
-\setminted{bgcolor=darkgray, autogobble, fontsize=\small}
+\usemintedstyle{friendly}
+
+\setminted{autogobble, fontsize=\small}
 \setmintedinline{bgcolor={}, fontsize=\normalsize}
 \fi
 
@@ -44,6 +45,8 @@
 \end{frame}
 }
 
-\renewcommand{\emph}[1]{\underline{#1}}
+% \renewcommand{\emph}[1]{\underline{#1}}
+
+\newcommand{\inputHaskell}[3]{\inputminted[firstline=#2,lastline=#3]{haskell}{#1}}
 
 \endinput
